@@ -1,10 +1,9 @@
 package com.pongr.diamondhead
 
 import org.specs2.mutable._
-import SignedRequest._
-import FacebookSignedRequestProtocol._
+import com.pongr.diamondhead.facebook._
 
-class FacebookSignedRequestProtocolSpec extends Specification {
+class FacebookSpec extends Specification {
   val appSecret = "105c404824eaf71cb547eef8bd679c28"
 
   //un-authed user
@@ -49,18 +48,16 @@ class FacebookSignedRequestProtocolSpec extends Specification {
 
   "The Facebook signed request protocol" should {
     "parse a signed request for un-authed user" in {
-      toFacebookSignedRequest(appSecret, request1) must beRight(signedRequest1)
-      toFacebookSignedRequest(appSecret, "signed_request=" + request1) must beRight(signedRequest1)
+      parse(appSecret, request1) must beRight(signedRequest1)
+      parse(appSecret, "signed_request=" + request1) must beRight(signedRequest1)
     }
 
     "parse a signed request for authed user" in {
-      toFacebookSignedRequest(appSecret, request2) must beRight(signedRequest2)
+      parse(appSecret, request2) must beRight(signedRequest2)
     }
 
     "parse an app canvas page request which contains other params" in {
-      signAndEncode(appSecret2, payload4) must_== signature4
-      parse(appSecret2, request4) must beRight
-      toFacebookSignedRequest(appSecret2, request4) must beRight(signedReqeust4)
+      parse(appSecret2, request4) must beRight(signedReqeust4)
     }
   }
 }
