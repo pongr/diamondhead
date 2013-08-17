@@ -1,9 +1,10 @@
 package com.pongr.diamondhead
 
 import spray.json._
+import DefaultJsonProtocol._
 import SignedRequest._
 
-object FacebookSignedRequestProtocol extends DefaultJsonProtocol {
+package object facebook {
   case class Age(
     min: Int,
     max: Option[Int]
@@ -36,6 +37,6 @@ object FacebookSignedRequestProtocol extends DefaultJsonProtocol {
   implicit val pageFormat = jsonFormat3(Page)
   implicit val signedRequestFormat = jsonFormat7(FacebookSignedRequest)
 
-  def toFacebookSignedRequest(appSecret: String, signedRequest: String): Either[Throwable, FacebookSignedRequest] = 
+  def parse(appSecret: String, signedRequest: String): Either[Throwable, FacebookSignedRequest] = 
     parseAs[FacebookSignedRequest](appSecret, signedRequest)
 }
