@@ -12,6 +12,10 @@ TODO generating & parsing with raw String payloads...
 
 TODO generating & parsing with case class payloads...
 
+### Facebook Signed Requsts
+
+TODO parse Facebook's signed requests into convenient case classes...
+
 ### Credits
 
 * [commons-codec][1] for Base64url encoding and decoding
