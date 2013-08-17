@@ -20,7 +20,17 @@ TODO generating & parsing with case class payloads...
 
 ### Facebook Signed Requsts
 
-TODO parse Facebook's signed requests into convenient case classes...
+``` scala
+
+import com.pongr.diamondhead.facebook._
+
+val signedRequest: String = ??? //probably extracted from a POST request from Facebook
+val appSecret: String = ???     //probably from your app config
+parse(appSecret, signedRequest) match {
+  case Right(sr) => //use the SignedRequest to do something cool
+  case Left(t) =>   //unable to parse the signed request
+}
+```
 
 ### Credits
 
