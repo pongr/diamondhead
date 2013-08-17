@@ -2,7 +2,6 @@ package com.pongr.diamondhead
 
 import spray.json._
 import DefaultJsonProtocol._
-import SignedRequest._
 
 package object facebook {
   case class Age(
