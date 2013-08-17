@@ -10,6 +10,8 @@ Utilities for working with signed requests in Scala. Diamondhead provides low-le
 
 TODO describe what signed requests are and use cases...
 
+[OAuth 2.0 signed request spec][6]
+
 ### Low-Level Functions
 
 TODO generating & parsing with raw String payloads...
@@ -19,6 +21,11 @@ TODO generating & parsing with raw String payloads...
 TODO generating & parsing with case class payloads...
 
 ### Facebook Signed Requsts
+
+[Facebook signed requests][5]
+
+[Facebook signed request fields][4]
+
 
 ``` scala
 
@@ -44,3 +51,6 @@ parse(appSecret, signedRequest) match {
 [1]: http://commons.apache.org/proper/commons-codec/
 [2]: https://github.com/spray/spray-json
 [3]: http://theza.ch
+[4]: https://developers.facebook.com/docs/reference/login/signed-request/
+[5]: https://developers.facebook.com/docs/facebook-login/using-login-with-games/
+[6]: https://docs.google.com/document/d/1kv6Oz_HRnWa0DaJx_SQ5Qlk_yqs_7zNAm75-FmKwNo4/pub
