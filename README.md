@@ -23,7 +23,8 @@ TODO parse Facebook's signed requests into convenient case classes...
 
 ### Authors
 
-* Zach Cox
+* [Zach Cox][3]
 
 [1]: http://commons.apache.org/proper/commons-codec/
 [2]: https://github.com/spray/spray-json
+[3]: http://theza.ch
