@@ -50,7 +50,7 @@ parse(appSecret, signedRequest) match {
 
 [1]: http://commons.apache.org/proper/commons-codec/
 [2]: https://github.com/spray/spray-json
-[3]: http://theza.ch
+[3]: https://github.com/zcox
 [4]: https://developers.facebook.com/docs/reference/login/signed-request/
 [5]: https://developers.facebook.com/docs/facebook-login/using-login-with-games/
 [6]: https://docs.google.com/document/d/1kv6Oz_HRnWa0DaJx_SQ5Qlk_yqs_7zNAm75-FmKwNo4/pub
