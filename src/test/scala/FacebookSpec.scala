@@ -1,4 +1,4 @@
-package com.pongr.diamondhead
+package com.pongr
 
 import org.specs2.mutable._
 import com.pongr.diamondhead.facebook._

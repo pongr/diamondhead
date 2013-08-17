@@ -1,8 +1,8 @@
-package com.pongr.diamondhead
+package com.pongr
 
 import org.specs2.mutable._
-import SignedRequest._
 import spray.json._
+import com.pongr.diamondhead._
 
 object SignedRequestSpecProtocol extends DefaultJsonProtocol {
   case class Thing(a: String, b: Int, c: Boolean)
@@ -30,7 +30,7 @@ class SignedRequestSpec extends Specification {
   val signedRequest3 = signature3 + delimiter + payload3
   val rawJson3 = """{"algorithm":"HMAC-SHA256","issued_at":1374177010,"page":{"id":"694529527230507","liked":true,"admin":false},"user":{"country":"us","locale":"en_US","age":{"min":21}}}"""
 
-  "The SignedRequest" should {
+  "The signed request functions" should {
     "sign a string with a key using hmac-sha256 and then base64url encode it" in {
       signAndEncode(key1, payload1) must_== signature1
       signAndEncode(key2, payload2) must_== signature2

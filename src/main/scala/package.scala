@@ -1,4 +1,4 @@
-package com.pongr.diamondhead
+package com.pongr
 
 import spray.json._
 import DefaultJsonProtocol._
@@ -6,9 +6,7 @@ import org.apache.commons.codec.binary.Base64
 import javax.crypto.Mac
 import javax.crypto.spec.SecretKeySpec
 
-class InvalidSignature extends RuntimeException
-
-object SignedRequest {
+package object diamondhead {
   /** The character between the signature and payload. */
   val delimiter = '.'
 
