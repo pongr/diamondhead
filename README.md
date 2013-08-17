@@ -1,5 +1,11 @@
 Utilities for working with signed requests in Scala. Diamondhead provides low-level generating and parsing functions for signed requests, and makes it easy to handle your own payload JSON format. Diamondhead ships with support for Facebook's signed request format built on these low-level functions.
 
+### sbt
+
+```
+"com.pongr" %% "diamondhead" % "0.9.0-SNAPSHOT"
+```
+
 ### Signed Requests
 
 TODO describe what signed requests are and use cases...
