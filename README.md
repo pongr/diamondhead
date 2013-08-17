@@ -34,8 +34,9 @@ import com.pongr.diamondhead.facebook._
 val signedRequest: String = ??? //probably extracted from a POST request from Facebook
 val appSecret: String = ???     //probably from your app config
 parse(appSecret, signedRequest) match {
-  case Right(sr) => //use the SignedRequest to do something cool
-  case Left(t) =>   //unable to parse the signed request
+  case Right(SignedRequest(_,_,_, Some(userId), Some(token), _,_)) => //authed user
+  case Right(sr) => //un-authed user
+  case Left(t) => //unable to parse the signed request
 }
 ```
 
