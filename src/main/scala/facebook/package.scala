@@ -21,7 +21,7 @@ package object facebook {
     admin: Boolean
   )
 
-  case class FacebookSignedRequest(
+  case class SignedRequest(
     algorithm: String,
     issued_at: Long,
     user: User,
@@ -34,8 +34,8 @@ package object facebook {
   implicit val ageFormat = jsonFormat2(Age)
   implicit val userFormat = jsonFormat3(User)
   implicit val pageFormat = jsonFormat3(Page)
-  implicit val signedRequestFormat = jsonFormat7(FacebookSignedRequest)
+  implicit val signedRequestFormat = jsonFormat7(SignedRequest)
 
-  def parse(appSecret: String, signedRequest: String): Either[Throwable, FacebookSignedRequest] = 
-    parseAs[FacebookSignedRequest](appSecret, signedRequest)
+  def parse(appSecret: String, signedRequest: String): Either[Throwable, SignedRequest] = 
+    parseAs[SignedRequest](appSecret, signedRequest)
 }
