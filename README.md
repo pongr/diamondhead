@@ -8,7 +8,7 @@ Utilities for working with signed requests in Scala. Diamondhead provides low-le
 
 ### Signed Requests
 
-Web services need to communicate with one another. When one web service receives an HTTP request from another which includes important data, that web service often needs to verify that the HTTP request did in fact originate from the expected client (and not some bad actor trying to trick the service).
+Web services need to communicate with one another. When one web service receives an HTTP request from another which includes important data, that web service often needs to verify that the HTTP request did in fact originate from the expected client (and not some bad actor trying to trick the service). If some other web site is asking your service for HTML to display in an iframe, or notifying you that some event occurred, you need to verify that the requestor is who you expect.
 
 Signed requests provide a simple way for a web service to verify that the information it received in an HTTP request actually came from the expected client. The two services share some secret key (that no one else should know). When one service makes a request to the other, it signs the data it's sending with this secret key, and includes the signature along with this data. When the other service receives the data it verifies the signature. 
 
