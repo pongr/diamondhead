@@ -14,7 +14,7 @@ Signed requests provide a simple way for a web service to verify that the inform
 
 Note that signed requests do not encrypt the payload data; the data is sent as-is over whatever communication channel is being used. Signed requests simply provide a way for a web service to verify that the data in the request came from the expected client. You should always send HTTP requests via SSL/HTTPS if you want their contents encrypted.
 
-Signed requests are defined in a (somewhat obscure) [OAuth2-related spec][6] and used increasingly by Facebook, especially when requesting the iframe content for a Facebook app's canvas page or a Facebook page tab. The base64url encoding and decoding, along with HMAC-SHA256 signing to verify signatures, is tedious code to write that can be easily performed by a library. Diamondhead provides all of this for you.
+Signed requests are defined in a (somewhat obscure) [OAuth2-related spec][6] and used increasingly by Facebook, especially when requesting the iframe content for a Facebook app's canvas page or a Facebook page tab. The base64url encoding and decoding, along with HMAC-SHA256 signing to verify signatures, is tedious code to write that can easily be performed by a library. Diamondhead provides all of this for you.
 
 ### Facebook Signed Requsts
 
