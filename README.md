@@ -3,7 +3,7 @@ Utilities for working with signed requests in Scala. Diamondhead provides low-le
 ### sbt
 
 ```
-"com.pongr" %% "diamondhead" % "0.9.0-SNAPSHOT"
+"com.pongr" %% "diamondhead" % "0.9.0"
 ```
 
 ### Signed Requests
