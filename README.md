@@ -26,17 +26,14 @@ TODO generating & parsing with case class payloads...
 
 ### Facebook Signed Requsts
 
-[Facebook signed requests][5]
-
-[Facebook signed request fields][4]
-
+Diamondhead ships with support for [Facebook signed requests][5]. The [SignedRequest][7] case class includes common fields that Facebook uses in their [signed requests][4]. For examples of how Facebook uses signed requests, see the [canvas tutorial][8] and [page tab tutorial][9].
 
 ``` scala
 
 import com.pongr.diamondhead.facebook._
 
 val signedRequest: String = ??? //probably extracted from a POST request from Facebook
-val appSecret: String = ???     //probably from your app config
+val appSecret: String = ???     //probably from your app config or database
 parse(appSecret, signedRequest) match {
   case Right(SignedRequest(_,_,_, Some(userId), Some(token), _,_)) => //authed user
   case Right(sr) => //un-authed user
@@ -59,3 +56,6 @@ parse(appSecret, signedRequest) match {
 [4]: https://developers.facebook.com/docs/reference/login/signed-request/
 [5]: https://developers.facebook.com/docs/facebook-login/using-login-with-games/
 [6]: https://docs.google.com/document/d/1kv6Oz_HRnWa0DaJx_SQ5Qlk_yqs_7zNAm75-FmKwNo4/pub
+[7]: https://github.com/pongr/diamondhead/blob/master/src/main/scala/facebook/package.scala
+[8]: https://developers.facebook.com/docs/appsonfacebook/tutorial/
+[9]: https://developers.facebook.com/docs/appsonfacebook/pagetabs/
