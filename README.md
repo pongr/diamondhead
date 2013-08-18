@@ -10,7 +10,7 @@ Utilities for working with signed requests in Scala. Diamondhead provides low-le
 
 Web services need to communicate with one another. When one web service receives an HTTP request from another which includes important data, that web service often needs to verify that the HTTP request did in fact originate from the expected client (and not some bad actor trying to trick the service). If some other web site is asking your service for HTML to display in an iframe, or notifying you that some event occurred, you need to verify that the requestor is who you expect.
 
-Signed requests provide a simple way for a web service to verify that the information it received in an HTTP request actually came from the expected client. The two services share some secret key (that no one else should know). When one service makes a request to the other, it signs the data it's sending with this secret key, and includes the signature along with this data. When the other service receives the data it verifies the signature. 
+Signed requests provide a simple way for a web service to verify that the information it received in an HTTP request actually came from the expected client. The two services share some secret key (that no one else should know). When one service makes a request to the other, it signs the data it's sending with this secret key (using somethign like [HMAC-SHA256][12]), and includes the signature along with this data. When the other service receives the data it verifies the signature. 
 
 Note that signed requests do not encrypt the payload data; the data is sent as-is over whatever communication channel is being used. Signed requests simply provide a way for a web service to verify that the data in the request came from the expected client. You should always send HTTP requests via SSL/HTTPS if you want their contents encrypted.
 
@@ -112,3 +112,4 @@ Diamondhead is released under the [Apache 2 License][11].
 [9]: https://developers.facebook.com/docs/appsonfacebook/pagetabs/
 [10]: https://github.com/spray/spray-json#providing-jsonformats-for-case-classes
 [11]: http://www.apache.org/licenses/LICENSE-2.0.txt
+[12]: http://en.wikipedia.org/wiki/Hash-based_message_authentication_code
