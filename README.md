@@ -16,14 +16,6 @@ Note that signed requests do not encrypt the payload data; the data is sent as-i
 
 Signed requests are defined in a (somewhat obscure) [OAuth2-related spec][6] and used increasingly by Facebook, especially when requesting the iframe content for a Facebook app's canvas page or a Facebook pages tab.
 
-### Low-Level Functions
-
-TODO generating & parsing with raw String payloads...
-
-### Custom JSON Protocols
-
-TODO generating & parsing with case class payloads...
-
 ### Facebook Signed Requsts
 
 Diamondhead ships with support for [Facebook signed requests][5]. The [SignedRequest][7] case class includes common fields that Facebook uses in their [signed requests][4]. For examples of how Facebook uses signed requests, see the [canvas tutorial][8] and [page tab tutorial][9].
@@ -40,6 +32,44 @@ parse(appSecret, signedRequest) match {
   case Left(t) => //unable to parse the signed request
 }
 ```
+
+This SignedRequest case class is built on Diamondhead's generic signed request functions. You can define your own case class to work with your own payload data format.
+
+### Custom JSON Protocols
+
+Typically you want to use a case class to work with payload data, instead of raw json. Simply define a [spray-json protocol][10] for your case class:
+
+``` scala
+import spray.json._
+
+object ThingProtocol extends DefaultJsonProtocol {
+  case class Thing(a: String, b: Int, c: Boolean)
+  implicit val thingFormat = jsonFormat3(Thing)
+}
+```
+
+The `generate` function will convert your case class to json, base64url encode it, sign it and produce the final signed request string:
+
+``` scala
+import com.pongr.diamondhead._
+
+val signedRequest: String = generate(key, Thing("a", 1, true))
+//now send signedRequest to some web service, they'll know it came from you
+```
+
+The `parseAs` function will verify the signature in a signed request string, then decode and parse it into an instance of your case class (or return any error that occurred during this process):
+
+``` scala
+import com.pongr.diamondhead._
+import ThingProtocol._
+
+val e: Either[Throwable, Thing] = parseAs(key, signedRequest)
+//handle the parse error or use the thing
+```
+
+### Low-Level Functions
+
+TODO generating & parsing with raw String payloads...
 
 ### Credits
 
@@ -59,3 +89,4 @@ parse(appSecret, signedRequest) match {
 [7]: https://github.com/pongr/diamondhead/blob/master/src/main/scala/facebook/package.scala
 [8]: https://developers.facebook.com/docs/appsonfacebook/tutorial/
 [9]: https://developers.facebook.com/docs/appsonfacebook/pagetabs/
+[10]: https://github.com/spray/spray-json#providing-jsonformats-for-case-classes
