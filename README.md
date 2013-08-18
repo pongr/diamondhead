@@ -69,7 +69,24 @@ val e: Either[Throwable, Thing] = parseAs(key, signedRequest)
 
 ### Low-Level Functions
 
-TODO generating & parsing with raw String payloads...
+The custom JSON protocol functions descried above are built on top of low-level String functions. If by chance you have your own base64url encoded payload String (instead of a case class instance) you can generate the signed request String:
+
+``` scala
+import com.pongr.diamondhead._
+
+val payload: String = ??? //already base64url encoded
+val signedRequest: String = generate(key, payload)
+//now send signedRequest to some web service, they'll know it came from you
+```
+
+Similarly, if you just need to verify and extract the encoded payload String from a signed request, you can do that too:
+
+``` scala
+import com.pongr.diamondhead._
+
+val e: Either[Throwable, String] = parse(key, signedRequest)
+//handle the parse error or use the payload string
+```
 
 ### Credits
 
