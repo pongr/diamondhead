@@ -14,11 +14,11 @@ Signed requests provide a simple way for a web service to verify that the inform
 
 Note that signed requests do not encrypt the payload data; the data is sent as-is over whatever communication channel is being used. Signed requests simply provide a way for a web service to verify that the data in the request came from the expected client. You should always send HTTP requests via SSL/HTTPS if you want their contents encrypted.
 
-Signed requests are defined in a (somewhat obscure) [OAuth2-related spec][6] and used increasingly by Facebook, especially when requesting the iframe content for a Facebook app's canvas page or a Facebook pages tab.
+Signed requests are defined in a (somewhat obscure) [OAuth2-related spec][6] and used increasingly by Facebook, especially when requesting the iframe content for a Facebook app's canvas page or a Facebook page tab. The base64url encoding and decoding, along with HMAC-SHA256 signing to verify signatures, is tedious code to write that can be easily performed by a library. Diamondhead provides all of this for you.
 
 ### Facebook Signed Requsts
 
-Diamondhead ships with support for [Facebook signed requests][5]. The [SignedRequest][7] case class includes common fields that Facebook uses in their [signed requests][4]. For examples of how Facebook uses signed requests, see the [canvas tutorial][8] and [page tab tutorial][9].
+Diamondhead ships with support for [Facebook signed requests][5], which comes in very handy when your Scala web app needs to verify the signed_request parameter and extract out the Facebook userId and OAuth2 access token. The [SignedRequest][7] case class includes common fields that Facebook uses in their [signed requests][4]. For examples of how Facebook uses signed requests, see the [canvas tutorial][8] and [page tab tutorial][9].
 
 ``` scala
 
@@ -37,7 +37,7 @@ This SignedRequest case class is built on Diamondhead's generic signed request f
 
 ### Custom JSON Protocols
 
-Typically you want to use a case class to work with payload data, instead of raw json. Simply define a [spray-json protocol][10] for your case class:
+Signed requests aren't just for Facebook. You can define your own payload JSON formats and use them when providing your own services. Typically you want to use a case class to work with payload data, instead of raw json. Simply define a [spray-json protocol][10] for your case class:
 
 ``` scala
 import spray.json._
@@ -88,6 +88,10 @@ val e: Either[Throwable, String] = parse(key, signedRequest)
 //handle the parse error or use the payload string
 ```
 
+### License
+
+Diamondhead is released under the [Apache 2 License][11].
+
 ### Credits
 
 * [commons-codec][1] for Base64url encoding and decoding
@@ -107,3 +111,4 @@ val e: Either[Throwable, String] = parse(key, signedRequest)
 [8]: https://developers.facebook.com/docs/appsonfacebook/tutorial/
 [9]: https://developers.facebook.com/docs/appsonfacebook/pagetabs/
 [10]: https://github.com/spray/spray-json#providing-jsonformats-for-case-classes
+[11]: http://www.apache.org/licenses/LICENSE-2.0.txt
