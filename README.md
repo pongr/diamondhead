@@ -55,7 +55,9 @@ The `generate` function will convert your case class to json, base64url encode i
 ``` scala
 import com.pongr.diamondhead._
 
-val signedRequest = generate(key, Thing("a", 1, true))
+val key = "SomeSecretValue"
+val thing = Thing("a", 1, true)
+val signedRequest = generate(key, thing)
 //signedRequest: String = _W12Hk6kco_wIvlxJcU_u72-nrer2mC1yGi9Fq42dfQ.eyJhIjoiYSIsImIiOjEsImMiOnRydWV9
 //now send signedRequest to some web service, they'll know it came from you
 ```
@@ -66,7 +68,8 @@ The `parseAs` function will verify the signature in a signed request string, the
 import com.pongr.diamondhead._
 import ThingProtocol._
 
-val e: Either[Throwable, Thing] = parseAs(key, signedRequest)
+val e: Either[Throwable, Thing] = parseAs(key, signedRequest) //use values from above
+//e: Either[Throwable,Thing] = Right(Thing(a,1,true))
 //handle the parse error or use the thing
 ```
 
