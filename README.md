@@ -55,7 +55,8 @@ The `generate` function will convert your case class to json, base64url encode i
 ``` scala
 import com.pongr.diamondhead._
 
-val signedRequest: String = generate(key, Thing("a", 1, true))
+val signedRequest = generate(key, Thing("a", 1, true))
+//signedRequest: String = _W12Hk6kco_wIvlxJcU_u72-nrer2mC1yGi9Fq42dfQ.eyJhIjoiYSIsImIiOjEsImMiOnRydWV9
 //now send signedRequest to some web service, they'll know it came from you
 ```
 
