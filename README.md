@@ -22,6 +22,8 @@ Signed requests are defined in a (somewhat obscure) [OAuth2-related spec][6] and
 
 Diamondhead ships with support for [Facebook signed requests][5], which comes in very handy when your Scala web app needs to verify the signed_request parameter and extract out the Facebook userId and OAuth2 access token. The [SignedRequest][7] case class includes common fields that Facebook uses in their [signed requests][4]. For examples of how Facebook uses signed requests, see the [canvas tutorial][8] and [page tab tutorial][9].
 
+Just call the `parse` function with your Facebook app secret and the signed request String, and you'll either get back an error or the parsed `SignedRequest` object:
+
 ``` scala
 
 import com.pongr.diamondhead.facebook._
