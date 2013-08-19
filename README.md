@@ -2,6 +2,8 @@ Utilities for working with signed requests in Scala. Diamondhead provides low-le
 
 ### sbt
 
+Diamondhead releases are in the central Maven repositories.
+
 ```
 "com.pongr" %% "diamondhead" % "0.9.0"
 ```
